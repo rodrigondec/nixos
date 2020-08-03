@@ -7,11 +7,17 @@
 {
   imports =
     [
+        ./common_softwares.nix
+        ./development.nix
+        ./gaming.nix
         ./hardware-configuration.nix
         ./kde.nix
         ./unstable_channel.nix
         ./user_update.nix
     ];
+
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -39,48 +45,6 @@
 
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [
-    anydesk
-    ark
-    awscli
-    dbeaver
-    discord
-    docker
-    docker-compose
-    firefox 
-    git
-    gitkraken
-    gnome3.gnome-disk-utility
-    gnome3.gedit 
-    gnumake 
-    gnupg
-    httpie
-    hubstaff
-    insomnia
-    jetbrains.pycharm-community
-    keepassxc
-    libreoffice
-    ngrok
-    nomacs
-    python38Full 
-    qbittorrent
-    robo3t
-    spectacle
-    spotify
-    sublime3
-    staruml
-    tdesktop
-    terraform
-    vlc
-    vscode
-    wget 
-    xorg.xkill
-
-  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -129,7 +93,6 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "20.03"; # Did you read the comment?
 
-  virtualisation.docker.enable = true;
 
 }
 
