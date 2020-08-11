@@ -11,19 +11,22 @@
         ./development.nix
         ./gaming.nix
         ./hardware-configuration.nix
-        ./kde.nix
+        ./gui/kde.nix
         ./unstable_channel.nix
         ./user_update.nix
+        # ./virtualisation.nix
     ];
 
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  boot.supportedFilesystems = [ "ntfs" ];
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
@@ -82,7 +85,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.rodrigondec = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "docker" "libvirtd" ]; # Enable ‘sudo’ for the user.
   };
 
   # This value determines the NixOS release from which the default

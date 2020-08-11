@@ -6,7 +6,6 @@
     anydesk
     awscli
     dbeaver
-    docker
     docker-compose
     git
     gitkraken
@@ -28,5 +27,12 @@
 
   ];
 
-  virtualisation.docker.enable = true;
+  virtualisation = {
+    docker = {
+      enable = true;
+      autoPrune = {
+        enable = true;
+      };
+    };
+  };
 }
