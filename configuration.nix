@@ -7,14 +7,15 @@
 {
   imports =
     [
-        ./common_softwares.nix
-        ./development.nix
-        ./gaming.nix
-        ./hardware-configuration.nix
-        ./gui/kde.nix
-        ./unstable_channel.nix
-        ./user_update.nix
-        # ./virtualisation.nix
+      ./amd_gpu.nix
+      ./common_softwares.nix
+      ./development.nix
+#     ./gaming.nix
+      ./hardware-configuration.nix
+      ./gui/kde.nix
+      ./unstable_channel.nix
+      ./user_update.nix
+      # ./virtualisation.nix
     ];
 
 
@@ -23,8 +24,10 @@
   boot.supportedFilesystems = [ "ntfs" ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -33,21 +36,22 @@
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
-  networking.interfaces.enp2s0.useDHCP = true;
+  networking.interfaces.enp3s0.useDHCP = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  # };
+  i18n.defaultLocale = "pt_BR.UTF-8";
+  console = {
+   font = "Lat2-Terminus16";
+   keyMap = "br-abnt2";
+  };
 
   # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "America/Recife";
+  time.hardwareClockInLocalTime = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -95,7 +99,6 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "20.03"; # Did you read the comment?
-
 
 }
 

@@ -41,12 +41,4 @@
       ];
     };
   };
-
-  services = {
-    xserver = {
-      enable = true;
-      videoDrivers = [ "intel" ];
-    };
-  };
-
 }
